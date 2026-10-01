@@ -211,17 +211,6 @@ Edit the config cell at the top of the notebook:
 
 ---
 
-## ✅ Roadmap
-
-- [x] Leak-free preprocessing with `Pipeline`
-- [x] ROC-AUC-based model selection and tuning
-- [x] Auto-validated `submission.csv`
-- [ ] Add results from the real competition data
-- [ ] Try Optuna / randomized search instead of grid search
-- [ ] Stack or blend the top models
-- [ ] Add SHAP explanations
-
----
 
 ## ❓ FAQ & troubleshooting
 
@@ -266,11 +255,6 @@ The column mapping supports the classic UCI names, but the notebook still expect
 
 Issues and pull requests are welcome. For larger changes, please open an issue first to discuss what you'd like to change.
 
-## 📄 License
-
-Add your license here (for example, MIT).
-
----
 
 <div align="center">
 
