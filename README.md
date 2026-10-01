@@ -201,7 +201,8 @@ Edit the config cell at the top of the notebook:
 | Public leaderboard | _TBD_ |
 
 <details>
-<summary><b>▶ Model comparison table (paste your output here)</b></summary>
+<summary><b><img width="395" height="277" alt="image" src="https://github.com/user-attachments/assets/5677f467-50cd-441a-b72d-90b12741fbe4" />
+</b></summary>
 
 | Model | CV ROC-AUC | Std |
 |---|---|---|
