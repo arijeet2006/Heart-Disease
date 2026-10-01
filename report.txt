@@ -1,0 +1,70 @@
+Heart Disease Prediction Report
+=================================
+
+1. Data Loading and Preprocessing
+-----------------------------------
+- Loaded train.csv, test.csv, and sample_submission.csv from Kaggle Playground
+- Auto-detected ID and target columns from sample_submission
+- Target column contains "Presence"/"Absence" (converted to 1/0)
+- Train: 4,533 rows | Test: 1,512 rows
+
+2. Feature Engineering (9 new features added)
+-----------------------------------------------
+- chol_per_age: Cholesterol to age ratio
+- hr_pct_of_max: Actual heart rate as percentage of age-predicted max
+- hr_deficit: Difference between predicted and actual max heart rate
+- bp_chol_ratio: Blood pressure to cholesterol ratio
+- age_x_oldpeak: Interaction between age and ST depression
+- oldpeak_x_slope: Interaction between ST depression and slope
+- age_bin: Ordinal age bands (categorized)
+- any_vessels: Binary indicator for vessels colored > 0
+- has_st_depression: Binary indicator for ST depression > 0
+
+Total features: 13 base + 9 engineered = 22
+
+3. Model Selection (7 classifiers tested with 5-fold CV)
+----------------------------------------------------------
+- Logistic Regression (scaled)
+- Random Forest (200 trees)
+- Gradient Boosting (150 trees)
+- SVM with RBF kernel (scaled)
+- Naive Bayes (scaled)
+- XGBoost (300 trees, learning_rate=0.05, max_depth=4)
+- LightGBM (300 trees, learning_rate=0.05)
+
+All models wrapped in leak-free pipelines (median imputation + optional scaling)
+Scored with ROC-AUC
+
+4. Model Optimization
+---------------------
+- GridSearchCV applied to top 3 models from model selection
+- Parameter grids defined for all 7 models
+- 3-fold cross-validation used during tuning
+- Best model tracked by highest CV AUC
+
+5. Final Evaluation on Hold-out Set
+-----------------------------------
+- Best model refit on full training set
+- Evaluated on untouched 20% hold-out set
+- Metrics reported: Accuracy, F1-Score, ROC-AUC
+- Classification report generated
+
+6. Feature Importance
+---------------------
+- Top 15 features displayed via horizontal bar plot
+- Based on feature_importances_ (tree models) or coef_ (linear models)
+
+7. Submission Generation
+------------------------
+- Final model trained on ALL labeled data (train + hold-out)
+- Predictions on test set saved to submission.csv
+- Validated against sample_submission.csv (columns, row count, IDs)
+- SUBMIT_PROBA=True by default (submit probabilities for ROC-AUC metric)
+
+Summary
+-------
+- 9 engineered features from 13 base features
+- 7 classifiers compared via 5-fold cross-ROC-AUC)
+- Top 3 models tuned with GridSearchCV
+- Best model evaluated on hold-out set
+- Final model trained on all data, predictions exported to submission.csv
